@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+  <rect width="960" height="540" fill="#0f172a"/>
+  <text x="480" y="48" fill="#f8fafc" font-family="Segoe UI, sans-serif" font-size="22" text-anchor="middle">FitFlow architecture</text>
+
+  <rect x="330" y="80" width="300" height="70" rx="12" fill="#1d4ed8"/>
+  <text x="480" y="122" fill="#ffffff" font-family="Segoe UI, sans-serif" font-size="18" text-anchor="middle">Flutter frontend</text>
+
+  <line x1="480" y1="150" x2="480" y2="210" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="180" y1="210" x2="780" y2="210" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="180" y1="210" x2="180" y2="250" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="480" y1="210" x2="480" y2="250" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="780" y1="210" x2="780" y2="250" stroke="#94a3b8" stroke-width="2"/>
+
+  <rect x="40" y="250" width="280" height="110" rx="12" fill="#334155"/>
+  <text x="180" y="295" fill="#e2e8f0" font-family="Segoe UI, sans-serif" font-size="16" text-anchor="middle">core-service</text>
+  <text x="180" y="322" fill="#93c5fd" font-family="Segoe UI, sans-serif" font-size="13" text-anchor="middle">NestJS · users, plans, social</text>
+
+  <rect x="340" y="250" width="280" height="110" rx="12" fill="#334155"/>
+  <text x="480" y="295" fill="#e2e8f0" font-family="Segoe UI, sans-serif" font-size="16" text-anchor="middle">nutrition-service</text>
+  <text x="480" y="322" fill="#86efac" font-family="Segoe UI, sans-serif" font-size="13" text-anchor="middle">FastAPI · nutrition tracking</text>
+
+  <rect x="640" y="250" width="280" height="110" rx="12" fill="#334155"/>
+  <text x="780" y="295" fill="#e2e8f0" font-family="Segoe UI, sans-serif" font-size="16" text-anchor="middle">ai-service</text>
+  <text x="780" y="322" fill="#fde68a" font-family="Segoe UI, sans-serif" font-size="13" text-anchor="middle">FastAPI + PyTorch · recommendations</text>
+
+  <rect x="180" y="420" width="600" height="70" rx="12" fill="#1e293b"/>
+  <text x="480" y="462" fill="#cbd5e1" font-family="Segoe UI, sans-serif" font-size="15" text-anchor="middle">Separate datastores per service · HTTP APIs</text>
+</svg>
