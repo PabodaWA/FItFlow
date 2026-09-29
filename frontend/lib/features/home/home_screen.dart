@@ -1,4 +1,5 @@
 import 'package:fitflow/core/fade_page_route.dart';
+import 'package:fitflow/features/ai_workout/ai_workout_screen.dart';
 import 'package:fitflow/features/home/dashboard_view.dart';
 import 'package:fitflow/features/home/placeholder_screen.dart';
 import 'package:fitflow/features/workout/workout_details_screen.dart';
@@ -16,19 +17,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _index = 0;
 
-  void _openPlaceholder({
-    required String title,
-    required String message,
-    required IconData icon,
-  }) {
-    Navigator.of(context).push(
-      fadePageRoute<void>(
-        builder: (context) =>
-            PlaceholderScreen(title: title, message: message, icon: icon),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
@@ -40,11 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
           onProfileTap: () => setState(() => _index = 4),
           onStartWorkout: () =>
               openWorkoutDetails(context, WorkoutCatalog.fullBodyStrength),
-          onViewRecommendation: () => _openPlaceholder(
-            title: 'AI Coach',
-            message: 'Your recommendation will be available soon.',
-            icon: Icons.auto_awesome,
-          ),
+          onViewRecommendation: () => openAiWorkout(context),
         ),
         1 => const WorkoutListView(),
         2 => const PlaceholderTab(
