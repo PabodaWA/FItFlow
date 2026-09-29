@@ -35,7 +35,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Home'), findsOneWidget);
-    expect(find.text('You are signed in.'), findsOneWidget);
+    expect(find.text('Good Morning 👋'), findsOneWidget);
   });
 
   testWidgets('create account requires matching passwords', (tester) async {
@@ -98,7 +98,7 @@ void main() {
     await tester.tap(find.widgetWithText(FilledButton, 'Create Account'));
     await tester.pumpAndSettle();
 
-    expect(find.text('You are signed in.'), findsOneWidget);
+    expect(find.text('Good Morning 👋'), findsOneWidget);
   });
 
   testWidgets('forgot password confirms a valid email', (tester) async {
@@ -108,7 +108,10 @@ void main() {
 
     expect(find.text('Reset password'), findsOneWidget);
 
-    await tester.enterText(find.byKey(const Key('forgot-email')), 'not-an-email');
+    await tester.enterText(
+      find.byKey(const Key('forgot-email')),
+      'not-an-email',
+    );
     await tester.tap(find.text('Send reset link'));
     await tester.pumpAndSettle();
     expect(find.text('Enter a valid email'), findsOneWidget);

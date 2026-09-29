@@ -1,6 +1,9 @@
 import 'package:fitflow/core/fade_page_route.dart';
 import 'package:fitflow/features/home/dashboard_view.dart';
 import 'package:fitflow/features/home/placeholder_screen.dart';
+import 'package:fitflow/features/workout/workout_details_screen.dart';
+import 'package:fitflow/features/workout/workout_list_view.dart';
+import 'package:fitflow/features/workout/workout_mock_data.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -20,11 +23,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }) {
     Navigator.of(context).push(
       fadePageRoute<void>(
-        builder: (context) => PlaceholderScreen(
-          title: title,
-          message: message,
-          icon: icon,
-        ),
+        builder: (context) =>
+            PlaceholderScreen(title: title, message: message, icon: icon),
       ),
     );
   }
@@ -38,22 +38,15 @@ class _HomeScreenState extends State<HomeScreen> {
       body: switch (_index) {
         0 => DashboardView(
           onProfileTap: () => setState(() => _index = 4),
-          onStartWorkout: () => _openPlaceholder(
-            title: 'Full Body Strength',
-            message: 'This workout will be available soon.',
-            icon: Icons.fitness_center,
-          ),
+          onStartWorkout: () =>
+              openWorkoutDetails(context, WorkoutCatalog.fullBodyStrength),
           onViewRecommendation: () => _openPlaceholder(
             title: 'AI Coach',
             message: 'Your recommendation will be available soon.',
             icon: Icons.auto_awesome,
           ),
         ),
-        1 => const PlaceholderTab(
-          title: 'Workouts',
-          message: 'Workout plans will show up here.',
-          icon: Icons.fitness_center,
-        ),
+        1 => const WorkoutListView(),
         2 => const PlaceholderTab(
           title: 'Nutrition',
           message: 'Nutrition tracking will show up here.',
