@@ -1,3 +1,5 @@
+import 'package:fitflow/features/auth/auth_api.dart';
+import 'package:fitflow/features/auth/auth_scope.dart';
 import 'package:fitflow/features/auth/auth_validators.dart';
 import 'package:fitflow/features/auth/auth_widgets.dart';
 import 'package:fitflow/features/home/home_screen.dart';
@@ -17,6 +19,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _passwordController = TextEditingController();
   final _confirmController = TextEditingController();
   var _autovalidateMode = AutovalidateMode.disabled;
+  var _submitting = false;
+  String? _error;
 
   @override
   void initState() {
@@ -40,13 +44,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
     }
   }
 
-  void _createAccount() {
+  Future<void> _createAccount() async {
+    if (_submitting) return;
     if (!(_formKey.currentState?.validate() ?? false)) {
       setState(() => _autovalidateMode = AutovalidateMode.onUserInteraction);
       return;
     }
 
-    openHome(context);
+    final auth = AuthScope.of(context);
+    setState(() {
+      _submitting = true;
+      _error = null;
+    });
+    try {
+      await auth.register(
+        name: _nameController.text.trim(),
+        email: _emailController.text.trim(),
+        password: _passwordController.text,
+      );
+      if (!mounted) return;
+      openHome(context);
+    } on AuthException catch (error) {
+      if (!mounted) return;
+      setState(() => _error = error.message);
+    } finally {
+      if (mounted) setState(() => _submitting = false);
+    }
   }
 
   @override
@@ -114,9 +137,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 onFieldSubmitted: (_) => _createAccount(),
               ),
               const SizedBox(height: 24),
+              AuthErrorText(message: _error),
               FilledButton(
-                onPressed: _createAccount,
-                child: const Text('Create Account'),
+                onPressed: _submitting ? null : _createAccount,
+                child: _submitting
+                    ? const SizedBox(
+                        key: Key('auth-progress'),
+                        width: 22,
+                        height: 22,
+                        child: CircularProgressIndicator(strokeWidth: 2.4),
+                      )
+                    : const Text('Create Account'),
               ),
               const SizedBox(height: 8),
               AuthSwitchLink(

@@ -1,4 +1,5 @@
 import 'package:fitflow/core/fade_page_route.dart';
+import 'package:fitflow/features/auth/auth_scope.dart';
 import 'package:fitflow/features/ai_workout/ai_workout_screen.dart';
 import 'package:fitflow/features/community/community_view.dart';
 import 'package:fitflow/features/home/dashboard_view.dart';
@@ -12,7 +13,9 @@ import 'package:fitflow/features/workout/workout_mock_data.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({super.key, this.accountName});
+
+  final String? accountName;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -20,7 +23,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _index = 0;
-  MemberProfile _profile = ProfileMockData.jordan;
+  late MemberProfile _profile = _profileForAccount(widget.accountName);
   ProfileSettings _settings = ProfileMockData.settings;
 
   @override
@@ -83,9 +86,21 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
+MemberProfile _profileForAccount(String? name) {
+  final trimmed = name?.trim() ?? '';
+  if (trimmed.isEmpty) return ProfileMockData.jordan;
+  return ProfileMockData.jordan.copyWith(
+    name: trimmed,
+    initials: initialsFor(trimmed),
+  );
+}
+
 void openHome(BuildContext context) {
+  final accountName = AuthScope.maybeOf(context)?.session?.user.name;
   Navigator.of(context).pushAndRemoveUntil<void>(
-    fadePageRoute<void>(builder: (context) => const HomeScreen()),
+    fadePageRoute<void>(
+      builder: (context) => HomeScreen(accountName: accountName),
+    ),
     (route) => false,
   );
 }
