@@ -77,29 +77,34 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('start workout opens details and recommendation stays pending', (
-    tester,
-  ) async {
-    await pumpHome(tester);
+  testWidgets(
+    'start workout opens details and recommendation opens AI workout',
+    (tester) async {
+      await pumpHome(tester);
 
-    await tester.ensureVisible(find.text('Start Workout'));
-    await tester.tap(find.text('Start Workout'));
-    await tester.pumpAndSettle();
-    expect(find.text('Goblet Squats'), findsOneWidget);
-    expect(find.text('Exercises'), findsOneWidget);
-    expect(find.text('This workout will be available soon.'), findsNothing);
+      await tester.ensureVisible(find.text('Start Workout'));
+      await tester.tap(find.text('Start Workout'));
+      await tester.pumpAndSettle();
+      expect(find.text('Goblet Squats'), findsOneWidget);
+      expect(find.text('Exercises'), findsOneWidget);
+      expect(find.text('This workout will be available soon.'), findsNothing);
 
-    await tester.pageBack();
-    await tester.pumpAndSettle();
+      await tester.pageBack();
+      await tester.pumpAndSettle();
 
-    await tester.ensureVisible(find.text('View Recommendation'));
-    await tester.tap(find.text('View Recommendation'));
-    await tester.pumpAndSettle();
-    expect(
-      find.text('Your recommendation will be available soon.'),
-      findsOneWidget,
-    );
-  });
+      await tester.ensureVisible(find.text('View Recommendation'));
+      await tester.tap(find.text('View Recommendation'));
+      await tester.pumpAndSettle();
+      expect(find.text('AI Workout'), findsOneWidget);
+      expect(find.text('Generate Workout'), findsOneWidget);
+      expect(find.text('Fitness goal'), findsOneWidget);
+      expect(find.text('Build Muscle'), findsOneWidget);
+      expect(
+        find.text('Your recommendation will be available soon.'),
+        findsNothing,
+      );
+    },
+  );
 
   testWidgets('bottom navigation opens placeholder tabs', (tester) async {
     await pumpHome(tester);
