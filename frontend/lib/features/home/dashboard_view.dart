@@ -1,3 +1,4 @@
+import 'package:fitflow/features/workout/workout_mock_data.dart';
 import 'package:flutter/material.dart';
 
 class DashboardView extends StatelessWidget {
@@ -98,10 +99,7 @@ class _Header extends StatelessWidget {
               child: SizedBox(
                 width: 48,
                 height: 48,
-                child: Icon(
-                  Icons.person_rounded,
-                  color: colorScheme.primary,
-                ),
+                child: Icon(Icons.person_rounded, color: colorScheme.primary),
               ),
             ),
           ),
@@ -120,9 +118,9 @@ class _SectionTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-        fontWeight: FontWeight.w700,
-      ),
+      style: Theme.of(
+        context,
+      ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
     );
   }
 }
@@ -284,6 +282,7 @@ class _WorkoutCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final workout = WorkoutCatalog.fullBodyStrength;
 
     return DecoratedBox(
       decoration: BoxDecoration(
@@ -322,7 +321,7 @@ class _WorkoutCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Full Body Strength',
+                    workout.name,
                     style: theme.textTheme.headlineSmall?.copyWith(
                       color: Colors.white,
                       fontWeight: FontWeight.w700,
@@ -331,7 +330,7 @@ class _WorkoutCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    '45 min • 8 exercises',
+                    '${workout.durationLabel} • ${workout.exerciseCountLabel}',
                     style: theme.textTheme.bodyLarge?.copyWith(
                       color: const Color(0xFFD7F5E4),
                     ),
@@ -377,9 +376,7 @@ class _AiCoachCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: colorScheme.surface,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(
-          color: colorScheme.primary.withValues(alpha: 0.18),
-        ),
+        border: Border.all(color: colorScheme.primary.withValues(alpha: 0.18)),
       ),
       child: Padding(
         padding: const EdgeInsets.all(20),

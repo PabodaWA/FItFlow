@@ -17,9 +17,9 @@ void main() {
       MaterialApp(
         builder: (context, child) {
           return MediaQuery(
-            data: MediaQuery.of(context).copyWith(
-              textScaler: TextScaler.linear(textScale),
-            ),
+            data: MediaQuery.of(
+              context,
+            ).copyWith(textScaler: TextScaler.linear(textScale)),
             child: child!,
           );
         },
@@ -44,10 +44,7 @@ void main() {
     expect(find.text('Your personalized workout is ready.'), findsOneWidget);
     expect(find.text('View Recommendation'), findsOneWidget);
 
-    await tester.scrollUntilVisible(
-      find.text('Weekly Progress'),
-      300,
-    );
+    await tester.scrollUntilVisible(find.text('Weekly Progress'), 300);
     expect(find.text('Weekly Progress'), findsOneWidget);
     expect(find.text('Mon'), findsOneWidget);
     expect(find.text('Sun'), findsOneWidget);
@@ -80,7 +77,7 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('workout and recommendation buttons open placeholders', (
+  testWidgets('start workout opens details and recommendation stays pending', (
     tester,
   ) async {
     await pumpHome(tester);
@@ -88,7 +85,9 @@ void main() {
     await tester.ensureVisible(find.text('Start Workout'));
     await tester.tap(find.text('Start Workout'));
     await tester.pumpAndSettle();
-    expect(find.text('This workout will be available soon.'), findsOneWidget);
+    expect(find.text('Goblet Squats'), findsOneWidget);
+    expect(find.text('Exercises'), findsOneWidget);
+    expect(find.text('This workout will be available soon.'), findsNothing);
 
     await tester.pageBack();
     await tester.pumpAndSettle();
@@ -107,7 +106,9 @@ void main() {
 
     await tester.tap(find.text('Workouts'));
     await tester.pumpAndSettle();
-    expect(find.text('Workout plans will show up here.'), findsOneWidget);
+    expect(find.text('Pick a session and start training.'), findsOneWidget);
+    expect(find.text('Upper Body Power'), findsOneWidget);
+    expect(find.text('Workout plans will show up here.'), findsNothing);
 
     await tester.tap(find.text('Nutrition'));
     await tester.pumpAndSettle();
