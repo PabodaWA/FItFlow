@@ -1,5 +1,6 @@
 import 'package:fitflow/core/fade_page_route.dart';
 import 'package:fitflow/features/ai_workout/ai_workout_screen.dart';
+import 'package:fitflow/features/community/community_view.dart';
 import 'package:fitflow/features/home/dashboard_view.dart';
 import 'package:fitflow/features/home/placeholder_screen.dart';
 import 'package:fitflow/features/nutrition/nutrition_view.dart';
@@ -33,11 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         1 => const WorkoutListView(),
         2 => const NutritionView(),
-        3 => const PlaceholderTab(
-          title: 'Community',
-          message: 'Community features will show up here.',
-          icon: Icons.groups_outlined,
-        ),
+        3 => const CommunityView(),
         _ => const PlaceholderTab(
           title: 'Profile',
           message: 'Your profile will show up here.',

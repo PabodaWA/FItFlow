@@ -120,14 +120,25 @@ void main() {
     expect(find.text('Today\'s intake'), findsOneWidget);
     expect(find.text('Daily calories'), findsOneWidget);
     expect(find.text('Nutrition tracking will show up here.'), findsNothing);
-    await tester.scrollUntilVisible(find.text('Greek yogurt with berries'), 300);
+    await tester.scrollUntilVisible(
+      find.text('Greek yogurt with berries'),
+      300,
+    );
     expect(find.text('Greek yogurt with berries'), findsOneWidget);
     await tester.scrollUntilVisible(find.text('Apple and almonds'), 300);
     expect(tester.takeException(), isNull);
 
     await tester.tap(find.text('Community'));
     await tester.pumpAndSettle();
-    expect(find.text('Community features will show up here.'), findsOneWidget);
+    expect(find.text('Community features will show up here.'), findsNothing);
+    expect(find.text('Jordan Hale'), findsWidgets);
+    expect(find.byKey(const Key('create-post-button')), findsOneWidget);
+    await tester.scrollUntilVisible(
+      find.text('Completed my Full Body Workout 💪'),
+      300,
+    );
+    expect(find.text('Completed my Full Body Workout 💪'), findsOneWidget);
+    expect(tester.takeException(), isNull);
 
     await tester.tap(find.text('Profile'));
     await tester.pumpAndSettle();
