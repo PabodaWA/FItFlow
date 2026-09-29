@@ -2,6 +2,7 @@ import 'package:fitflow/core/fade_page_route.dart';
 import 'package:fitflow/features/ai_workout/ai_workout_screen.dart';
 import 'package:fitflow/features/home/dashboard_view.dart';
 import 'package:fitflow/features/home/placeholder_screen.dart';
+import 'package:fitflow/features/nutrition/nutrition_view.dart';
 import 'package:fitflow/features/workout/workout_details_screen.dart';
 import 'package:fitflow/features/workout/workout_list_view.dart';
 import 'package:fitflow/features/workout/workout_mock_data.dart';
@@ -31,11 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
           onViewRecommendation: () => openAiWorkout(context),
         ),
         1 => const WorkoutListView(),
-        2 => const PlaceholderTab(
-          title: 'Nutrition',
-          message: 'Nutrition tracking will show up here.',
-          icon: Icons.restaurant_outlined,
-        ),
+        2 => const NutritionView(),
         3 => const PlaceholderTab(
           title: 'Community',
           message: 'Community features will show up here.',

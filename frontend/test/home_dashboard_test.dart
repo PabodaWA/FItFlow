@@ -106,7 +106,7 @@ void main() {
     },
   );
 
-  testWidgets('bottom navigation opens placeholder tabs', (tester) async {
+  testWidgets('bottom navigation opens each tab', (tester) async {
     await pumpHome(tester);
 
     await tester.tap(find.text('Workouts'));
@@ -117,7 +117,13 @@ void main() {
 
     await tester.tap(find.text('Nutrition'));
     await tester.pumpAndSettle();
-    expect(find.text('Nutrition tracking will show up here.'), findsOneWidget);
+    expect(find.text('Today\'s intake'), findsOneWidget);
+    expect(find.text('Daily calories'), findsOneWidget);
+    expect(find.text('Nutrition tracking will show up here.'), findsNothing);
+    await tester.scrollUntilVisible(find.text('Greek yogurt with berries'), 300);
+    expect(find.text('Greek yogurt with berries'), findsOneWidget);
+    await tester.scrollUntilVisible(find.text('Apple and almonds'), 300);
+    expect(tester.takeException(), isNull);
 
     await tester.tap(find.text('Community'));
     await tester.pumpAndSettle();
