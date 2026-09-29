@@ -142,7 +142,19 @@ void main() {
 
     await tester.tap(find.text('Profile'));
     await tester.pumpAndSettle();
-    expect(find.text('Your profile will show up here.'), findsOneWidget);
+    expect(find.text('Your profile will show up here.'), findsNothing);
+    expect(find.text('Jordan Hale'), findsOneWidget);
+    expect(find.text('Build Muscle'), findsOneWidget);
+    expect(find.text('Current streak'), findsOneWidget);
+    expect(find.text('Workouts completed'), findsOneWidget);
+    expect(find.text('Calories burned'), findsOneWidget);
+    await tester.scrollUntilVisible(find.text('Logout'), 300);
+    expect(find.text('Edit Profile'), findsOneWidget);
+    expect(find.text('My Goals'), findsOneWidget);
+    expect(find.text('Achievements'), findsOneWidget);
+    expect(find.text('Settings'), findsOneWidget);
+    expect(find.text('Logout'), findsOneWidget);
+    expect(tester.takeException(), isNull);
 
     await tester.tap(find.text('Home'));
     await tester.pumpAndSettle();
@@ -150,6 +162,7 @@ void main() {
 
     await tester.tap(find.byIcon(Icons.person_rounded));
     await tester.pumpAndSettle();
-    expect(find.text('Your profile will show up here.'), findsOneWidget);
+    expect(find.text('Jordan Hale'), findsOneWidget);
+    expect(find.text('Your profile will show up here.'), findsNothing);
   });
 }

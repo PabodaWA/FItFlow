@@ -2,8 +2,10 @@ import 'package:fitflow/core/fade_page_route.dart';
 import 'package:fitflow/features/ai_workout/ai_workout_screen.dart';
 import 'package:fitflow/features/community/community_view.dart';
 import 'package:fitflow/features/home/dashboard_view.dart';
-import 'package:fitflow/features/home/placeholder_screen.dart';
 import 'package:fitflow/features/nutrition/nutrition_view.dart';
+import 'package:fitflow/features/profile/profile_mock_data.dart';
+import 'package:fitflow/features/profile/profile_models.dart';
+import 'package:fitflow/features/profile/profile_view.dart';
 import 'package:fitflow/features/workout/workout_details_screen.dart';
 import 'package:fitflow/features/workout/workout_list_view.dart';
 import 'package:fitflow/features/workout/workout_mock_data.dart';
@@ -18,6 +20,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _index = 0;
+  MemberProfile _profile = ProfileMockData.jordan;
+  ProfileSettings _settings = ProfileMockData.settings;
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +39,11 @@ class _HomeScreenState extends State<HomeScreen> {
         1 => const WorkoutListView(),
         2 => const NutritionView(),
         3 => const CommunityView(),
-        _ => const PlaceholderTab(
-          title: 'Profile',
-          message: 'Your profile will show up here.',
-          icon: Icons.person_outline,
+        _ => ProfileView(
+          initialProfile: _profile,
+          initialSettings: _settings,
+          onProfileChanged: (profile) => setState(() => _profile = profile),
+          onSettingsChanged: (settings) => setState(() => _settings = settings),
         ),
       },
       bottomNavigationBar: NavigationBar(
