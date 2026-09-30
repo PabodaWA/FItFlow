@@ -1,9 +1,60 @@
+import 'package:fitflow/features/auth/auth_api.dart';
 import 'package:fitflow/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-Future<void> _openLogin(WidgetTester tester) async {
-  await tester.pumpWidget(const FitFlowApp());
+class FakeAuthApi implements AuthApi {
+  FakeAuthApi({this.failure});
+
+  final AuthException? failure;
+  int logouts = 0;
+  String? loggedOutToken;
+
+  @override
+  Future<AuthSession> register({
+    required String name,
+    required String email,
+    required String password,
+  }) async {
+    final failure = this.failure;
+    if (failure != null) throw failure;
+    return AuthSession(
+      accessToken: 'token-$email',
+      user: AuthUser(id: 'user-1', name: name, email: email),
+    );
+  }
+
+  @override
+  Future<AuthSession> login({
+    required String email,
+    required String password,
+  }) async {
+    final failure = this.failure;
+    if (failure != null) throw failure;
+    return AuthSession(
+      accessToken: 'token-$email',
+      user: AuthUser(id: 'user-1', name: 'Ada Lovelace', email: email),
+    );
+  }
+
+  @override
+  Future<void> logout(String accessToken) async {
+    logouts += 1;
+    loggedOutToken = accessToken;
+  }
+
+  @override
+  Future<AuthUser> currentUser(String accessToken) async {
+    return const AuthUser(
+      id: 'user-1',
+      name: 'Ada Lovelace',
+      email: 'ada@fitflow.app',
+    );
+  }
+}
+
+Future<void> _openLogin(WidgetTester tester, {AuthApi? authApi}) async {
+  await tester.pumpWidget(FitFlowApp(authApi: authApi ?? FakeAuthApi()));
   await tester.tap(find.text('Skip'));
   await tester.pumpAndSettle();
 }
@@ -99,6 +150,70 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Good Morning 👋'), findsOneWidget);
+
+    await tester.tap(find.text('Profile'));
+    await tester.pumpAndSettle();
+    expect(find.text('Ada Lovelace'), findsOneWidget);
+  });
+
+  testWidgets('sign in shows the server error and stays signed out', (
+    tester,
+  ) async {
+    await _openLogin(
+      tester,
+      authApi: FakeAuthApi(
+        failure: const AuthException('Invalid email or password'),
+      ),
+    );
+
+    await tester.enterText(
+      find.byKey(const Key('login-email')),
+      'ada@fitflow.app',
+    );
+    await tester.enterText(
+      find.byKey(const Key('login-password')),
+      'password1',
+    );
+    await tester.tap(find.widgetWithText(FilledButton, 'Sign In'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Invalid email or password'), findsOneWidget);
+    expect(find.text('Home'), findsNothing);
+  });
+
+  testWidgets('logout revokes the session and returns to sign in', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(800, 1600);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+
+    final api = FakeAuthApi();
+    await _openLogin(tester, authApi: api);
+    await tester.enterText(
+      find.byKey(const Key('login-email')),
+      'ada@fitflow.app',
+    );
+    await tester.enterText(
+      find.byKey(const Key('login-password')),
+      'password1',
+    );
+    await tester.tap(find.widgetWithText(FilledButton, 'Sign In'));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Profile'));
+    await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(find.byKey(const Key('menu-logout')), 300);
+    await tester.tap(find.byKey(const Key('menu-logout')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('confirm-logout')));
+    await tester.pumpAndSettle();
+
+    expect(api.logouts, 1);
+    expect(api.loggedOutToken, 'token-ada@fitflow.app');
+    expect(find.text('Sign in'), findsOneWidget);
+    expect(find.text('Ada Lovelace'), findsNothing);
   });
 
   testWidgets('forgot password confirms a valid email', (tester) async {

@@ -84,6 +84,28 @@ class AuthScaffold extends StatelessWidget {
   }
 }
 
+class AuthErrorText extends StatelessWidget {
+  const AuthErrorText({super.key, required this.message});
+
+  final String? message;
+
+  @override
+  Widget build(BuildContext context) {
+    if (message == null) return const SizedBox.shrink();
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Text(
+        message!,
+        key: const Key('auth-error'),
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+          color: Theme.of(context).colorScheme.error,
+          height: 1.35,
+        ),
+      ),
+    );
+  }
+}
+
 class AuthSwitchLink extends StatelessWidget {
   const AuthSwitchLink({
     super.key,

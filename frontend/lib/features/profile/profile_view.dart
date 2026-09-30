@@ -1,5 +1,6 @@
 import 'package:fitflow/core/fade_page_route.dart';
 import 'package:fitflow/features/ai_workout/ai_workout_models.dart';
+import 'package:fitflow/features/auth/auth_scope.dart';
 import 'package:fitflow/features/auth/login_screen.dart';
 import 'package:fitflow/features/profile/achievements_screen.dart';
 import 'package:fitflow/features/profile/edit_profile_screen.dart';
@@ -122,6 +123,8 @@ class _ProfileViewState extends State<ProfileView> {
       },
     );
     if (!mounted || confirmed != true) return;
+    await AuthScope.maybeOf(context)?.logout();
+    if (!mounted) return;
     Navigator.of(context).pushAndRemoveUntil<void>(
       fadePageRoute<void>(builder: (context) => const LoginScreen()),
       (route) => false,
