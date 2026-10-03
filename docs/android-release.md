@@ -80,3 +80,5 @@ Confirm:
 `minSdk`, `targetSdk`, and `compileSdk` follow the installed Flutter SDK (`flutter.minSdkVersion`, `flutter.targetSdkVersion`, `flutter.compileSdkVersion` in `build.gradle.kts`). The release built with the current SDK targets minSdk 24, targetSdk 36, and compileSdk 36. Check the badging output again after each Flutter upgrade before uploading.
 
 The APK is a universal package (arm64-v8a, armeabi-v7a, and x86_64), so it is larger than what a user downloads from Play. Upload the AAB; Play serves one ABI per device.
+
+The store listing, content rating, pricing and countries, Play App Signing, pre-launch review, and listing experiments are in [Google Play Console](play-console.md).
