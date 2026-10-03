@@ -120,7 +120,7 @@ After the build finishes processing under **TestFlight → iOS → 1.0.1**:
 1. Confirm the build shows version `1.0.1` and build `2`.
 2. If a compliance prompt still appears, answer that the app uses encryption and qualifies for the exemption for encryption that is part of the operating system. Then check that `ITSAppUsesNonExemptEncryption` is in the uploaded Info.plist.
 3. Add the build to the internal group as soon as processing completes. Internal testing does not wait for Beta App Review.
-4. Add the same build to the external group only when you submit it for Beta App Review.
+4. Add the same build to the external group only after the approval gate in [Internal testing](internal-testing.md) is signed, and only when you submit it for Beta App Review.
 
 Test Information, used for both groups:
 

@@ -48,4 +48,4 @@ A TestFlight phone cannot sign in to `http://localhost:3000`. That address is th
 
 Sign in to the [Transporter](https://apps.apple.com/app/transporter/id1450874784) app with an Apple ID that has the App Manager or Admin role, and deliver the IPA. After processing, the build appears under **TestFlight** for `1.0.1`. Processing often takes several minutes and can take longer the first time.
 
-The store listing, privacy nutrition label, TestFlight groups, screenshots, and review notes are in [App Store Connect and TestFlight](app-store-connect.md).
+The store listing, privacy nutrition label, TestFlight groups, screenshots, and review notes are in [App Store Connect and TestFlight](app-store-connect.md). Who receives build 2, what they run, and when an external group may be added are in [Internal testing](internal-testing.md).

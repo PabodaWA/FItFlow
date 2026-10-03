@@ -81,4 +81,4 @@ Confirm:
 
 The APK is a universal package (arm64-v8a, armeabi-v7a, and x86_64), so it is larger than what a user downloads from Play. Upload the AAB; Play serves one ABI per device.
 
-The store listing, content rating, pricing and countries, Play App Signing, pre-launch review, and listing experiments are in [Google Play Console](play-console.md).
+The store listing, content rating, pricing and countries, Play App Signing, pre-launch review, and listing experiments are in [Google Play Console](play-console.md). The internal-track rollout and the sessions that have to pass before a wider release are in [Internal testing](internal-testing.md).

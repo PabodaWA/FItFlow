@@ -85,7 +85,7 @@ Sign in, follow a workout, and draft a session on your phone. Log meals and wate
 
 That note is 201 characters (limit 500).
 
-Confirm the console shows version name `1.0.1` and version code `2` before you start the rollout to internal testers. Add the tester accounts, then roll out.
+Confirm the console shows version name `1.0.1` and version code `2` before you start the rollout to internal testers. The email list, the opt-in link, the session scripts, and the rule that this track stays internal until the log is signed are in [Internal testing](internal-testing.md).
 
 ## Content rating
 
