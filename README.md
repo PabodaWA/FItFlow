@@ -67,6 +67,8 @@ uvicorn app.main:app --reload --port 8002
 - [Architecture ADR](docs/adr/ADR-001-architecture.md)
 - [Android release signing](docs/android-release.md)
 - [Google Play Console](docs/play-console.md)
+- [iOS release](docs/ios-release.md)
+- [App Store Connect and TestFlight](docs/app-store-connect.md)
 - [Privacy policy](docs/privacy-policy.md) — also published at https://cdn.jsdelivr.net/gh/PabodaWA/FItFlow@main/docs/site/privacy/index.html
 - [Release notes](docs/release-notes.md) — also published at https://cdn.jsdelivr.net/gh/PabodaWA/FItFlow@main/docs/site/release-notes/index.html
 - [Comparison matrix](docs/comparison-matrix.xlsx)

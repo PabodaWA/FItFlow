@@ -23,6 +23,7 @@ Training, meals, and people, in one place. This build connects sign-in to the co
 
 - The privacy policy is published and linked from Settings, sign-in, and create account.
 - Release builds can be signed for Google Play. See [Android release signing](android-release.md).
+- An iOS archive can be uploaded for TestFlight. See [iOS release](ios-release.md) and [App Store Connect](app-store-connect.md).
 - Checks run for the Flutter app, the core API, the nutrition API, and the AI service.
 
 ## Please read

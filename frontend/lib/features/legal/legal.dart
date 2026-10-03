@@ -156,6 +156,7 @@ final releaseNotesDocument = LegalDocument(
     LegalSection('Also in this build', [
       'The privacy policy is published and linked from Settings, sign-in, and create account.',
       'Release builds can be signed for Google Play. See docs/android-release.md.',
+      'An iOS archive can be uploaded for TestFlight. See docs/ios-release.md and docs/app-store-connect.md.',
       'Checks run for the Flutter app, the core API, the nutrition API, and the AI service.',
     ]),
     LegalSection('Please read', [
