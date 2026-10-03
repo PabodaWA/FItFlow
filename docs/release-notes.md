@@ -2,7 +2,7 @@
 
 Version 1.0.1 (build 2) · 3 October 2026
 
-Public page: https://pabodawa.github.io/FItFlow/release-notes/
+Public page: https://cdn.jsdelivr.net/gh/PabodaWA/FItFlow@main/docs/site/release-notes/index.html
 
 ## FitFlow 1.0.1
 

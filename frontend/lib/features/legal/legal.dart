@@ -8,10 +8,11 @@ const fitFlowVersionLabel = '$fitFlowVersionName (build $fitFlowBuildNumber)';
 const fitFlowSupportEmail = 'privacy@fitflow.app';
 const fitFlowIssuesUrl = 'https://github.com/PabodaWA/FItFlow/issues';
 
-/// Canonical public pages. GitHub Pages serves `docs/site`.
-const fitFlowPrivacyPolicyUrl = 'https://pabodawa.github.io/FItFlow/privacy/';
+/// Public pages served from `docs/site` in this repository.
+const fitFlowPrivacyPolicyUrl =
+    'https://cdn.jsdelivr.net/gh/PabodaWA/FItFlow@main/docs/site/privacy/index.html';
 const fitFlowReleaseNotesUrl =
-    'https://pabodawa.github.io/FItFlow/release-notes/';
+    'https://cdn.jsdelivr.net/gh/PabodaWA/FItFlow@main/docs/site/release-notes/index.html';
 
 final fitFlowPrivacyPolicyUri = Uri.parse(fitFlowPrivacyPolicyUrl);
 final fitFlowReleaseNotesUri = Uri.parse(fitFlowReleaseNotesUrl);

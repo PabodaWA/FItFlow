@@ -66,7 +66,7 @@ uvicorn app.main:app --reload --port 8002
 - [Tech stack summary](docs/tech-stack-summary.md)
 - [Architecture ADR](docs/adr/ADR-001-architecture.md)
 - [Android release signing](docs/android-release.md)
-- [Privacy policy](docs/privacy-policy.md) — also published at https://pabodawa.github.io/FItFlow/privacy/
-- [Release notes](docs/release-notes.md) — also published at https://pabodawa.github.io/FItFlow/release-notes/
+- [Privacy policy](docs/privacy-policy.md) — also published at https://cdn.jsdelivr.net/gh/PabodaWA/FItFlow@main/docs/site/privacy/index.html
+- [Release notes](docs/release-notes.md) — also published at https://cdn.jsdelivr.net/gh/PabodaWA/FItFlow@main/docs/site/release-notes/index.html
 - [Comparison matrix](docs/comparison-matrix.xlsx)
 

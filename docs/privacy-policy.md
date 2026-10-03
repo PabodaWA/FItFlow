@@ -2,7 +2,7 @@
 
 Last updated 3 October 2026 · Version 1.0
 
-Public page: https://pabodawa.github.io/FItFlow/privacy/
+Public page: https://cdn.jsdelivr.net/gh/PabodaWA/FItFlow@main/docs/site/privacy/index.html
 
 Support: privacy@fitflow.app
 
