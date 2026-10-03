@@ -65,4 +65,6 @@ uvicorn app.main:app --reload --port 8002
 
 - [Tech stack summary](docs/tech-stack-summary.md)
 - [Architecture ADR](docs/adr/ADR-001-architecture.md)
+- [Android release signing](docs/android-release.md)
 - [Comparison matrix](docs/comparison-matrix.xlsx)
+
