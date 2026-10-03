@@ -3,6 +3,7 @@ import 'package:fitflow/features/auth/auth_scope.dart';
 import 'package:fitflow/features/auth/auth_validators.dart';
 import 'package:fitflow/features/auth/auth_widgets.dart';
 import 'package:fitflow/features/home/home_screen.dart';
+import 'package:fitflow/features/legal/legal_document_screen.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -155,6 +156,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 action: 'Sign in',
                 onPressed: () => Navigator.of(context).pop(),
               ),
+              const SizedBox(height: 4),
+              Text(
+                'Creating an account means you have read the Privacy Policy.',
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  height: 1.35,
+                ),
+              ),
+              const LegalFooter(),
             ],
           ),
         ),

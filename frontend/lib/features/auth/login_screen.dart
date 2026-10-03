@@ -6,6 +6,7 @@ import 'package:fitflow/features/auth/auth_widgets.dart';
 import 'package:fitflow/features/auth/forgot_password_screen.dart';
 import 'package:fitflow/features/auth/register_screen.dart';
 import 'package:fitflow/features/home/home_screen.dart';
+import 'package:fitflow/features/legal/legal_document_screen.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -129,6 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   );
                 },
               ),
+              const LegalFooter(),
             ],
           ),
         ),

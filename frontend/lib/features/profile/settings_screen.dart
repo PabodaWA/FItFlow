@@ -1,3 +1,5 @@
+import 'package:fitflow/features/legal/legal.dart';
+import 'package:fitflow/features/legal/legal_document_screen.dart';
 import 'package:fitflow/features/profile/profile_models.dart';
 import 'package:fitflow/features/profile/profile_widgets.dart';
 import 'package:flutter/material.dart';
@@ -102,6 +104,72 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 key: const Key('save-settings'),
                 onPressed: _save,
                 child: const Text('Save'),
+              ),
+              const SizedBox(height: 28),
+              const ProfileSectionTitle('Legal'),
+              const SizedBox(height: 12),
+              DecoratedBox(
+                decoration: profileCardDecoration(colorScheme, radius: 20),
+                child: Material(
+                  color: colorScheme.surface,
+                  borderRadius: BorderRadius.circular(20),
+                  clipBehavior: Clip.antiAlias,
+                  child: Column(
+                    children: [
+                      ListTile(
+                        key: const Key('setting-privacy'),
+                        leading: Icon(
+                          Icons.privacy_tip_outlined,
+                          color: colorScheme.primary,
+                        ),
+                        title: const Text('Privacy Policy'),
+                        subtitle: const Text(
+                          'Data, AI, community, and your rights.',
+                        ),
+                        trailing: const Icon(Icons.chevron_right),
+                        onTap: () => openLegalDocument(
+                          context,
+                          privacyPolicyDocument,
+                        ),
+                      ),
+                      const Divider(height: 1),
+                      ListTile(
+                        key: const Key('setting-release-notes'),
+                        leading: Icon(
+                          Icons.campaign_outlined,
+                          color: colorScheme.primary,
+                        ),
+                        title: const Text('Release notes'),
+                        subtitle: Text('Version $fitFlowVersionLabel'),
+                        trailing: const Icon(Icons.chevron_right),
+                        onTap: () => openLegalDocument(
+                          context,
+                          releaseNotesDocument,
+                        ),
+                      ),
+                      const Divider(height: 1),
+                      ListTile(
+                        key: const Key('setting-support'),
+                        leading: Icon(
+                          Icons.mail_outline,
+                          color: colorScheme.primary,
+                        ),
+                        title: const Text('Contact support'),
+                        subtitle: const Text(fitFlowSupportEmail),
+                        trailing: const Icon(Icons.open_in_new),
+                        onTap: () => openLegalUri(context, fitFlowSupportUri),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                'Version $fitFlowVersionLabel. FitFlow is a fitness tool, not medical advice.',
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: colorScheme.onSurfaceVariant,
+                  height: 1.4,
+                ),
               ),
             ],
           ),
