@@ -28,7 +28,7 @@ Training, meals, and people, in one place. This build connects sign-in to the co
 
 ## Please read
 
-FitFlow is a training companion, not a clinician and not a medical device. It does not diagnose, treat, or bill insurance. Read the [privacy policy](privacy-policy.md) for account data, on-device logs, AI suggestions, community posts, GDPR rights, and why ordinary personal use is outside HIPAA.
+FitFlow is a training companion, not a clinician and not a medical device. It does not diagnose, treat, or bill insurance. Read the [privacy policy](privacy-policy.md) for account data, session-only logs, AI suggestions, community posts, GDPR rights, and why ordinary personal use is outside HIPAA.
 
 Support: privacy@fitflow.app
 

@@ -16,17 +16,17 @@ FitFlow is a fitness companion for planning workouts, logging meals, tracking pr
 
 It covers the FitFlow apps (iOS, Android, and web) and the FitFlow services that support them: the core account service, the nutrition service, and the AI suggestion service.
 
-In version 1.0.1, your account is stored by the core service. Workout plans, nutrition logs, progress, profile stats, reminders, and community posts are kept in the app on your device. Those features are built so they can later sync to FitFlow services. If that sync is turned on, the categories below are what those services would receive. We will update this policy before we start collecting a new category of information.
+In version 1.0.1, your account is stored by the core service. Workout plans, nutrition logs, progress, profile choices, reminders, and community posts stay in the app for that session. They are not uploaded, and this version does not write them to storage on the phone, so they reset when you close the app. Those screens are built so they can later sync to FitFlow services. If that sync is turned on, the categories below are what those services would receive. We will update this policy before we start collecting a new category of information.
 
 ## Information we collect
 
-- **Account.** Name, email address, and a password. The password is stored only as a bcrypt hash. We also store a sign-in session (a bearer token and its expiry) so you can stay signed in until you log out.
+- **Account.** Name, email address, and a password. The password is stored only as a bcrypt hash. The core service also stores a sign-in session (a bearer token and its expiry). The app keeps that token in memory for the current run and does not save it on the phone. Closing the app means you sign in again. Logging out ends the server session.
 - **Profile and training.** Display name, fitness goal, streak, workouts completed, and calories burned.
 - **Workout preferences used to draft a session.** Goal, experience level, session length, and equipment.
 - **Nutrition you choose to log.** Food name, meal, calories, protein, carbs, fat, and water.
 - **Progress you choose to record.** Body weight, weekly workouts, calories, duration, and streak. Weight can be shown in kilograms or pounds.
 - **Settings.** Workout reminders, weekly summary, and unit choice.
-- **Community, when you use it.** Profile name, handle, bio, posts, achievement posts, comments, and likes. Anything you publish is visible to other FitFlow members.
+- **Community, when you use it.** Profile name, handle, bio, posts, achievement posts, comments, and likes. In this version that feed stays in the app session and is not sent to other members. If community later syncs, anything you publish would be visible to other FitFlow members, and we will update this policy first.
 
 We do not ask for government ID, payment card numbers, precise GPS, contacts, photos from your camera roll, or advertising identifiers.
 
@@ -48,9 +48,9 @@ You can use the rest of FitFlow without generating a workout.
 
 ## Social features
 
-The community feed lets members publish posts and achievements, comment, and like. Your name, handle, bio, and the text you publish are visible to other members of the feed.
+The community screens let you publish posts and achievements, comment, and like. In this version that activity stays in the app session. Other members do not receive it.
 
-Do not post another person’s private health details. You can use training, nutrition, and progress without posting. In this version, community content stays on the device.
+Do not post another person’s private health details. The screens are built so that, once posts sync, your name, handle, bio, and the text you publish would be visible to other members, along with likes and comments. We will update this policy before that sync starts. You can use training, nutrition, and progress without posting.
 
 ## Legal bases under the GDPR
 
@@ -59,7 +59,7 @@ If you are in the European Economic Area, the United Kingdom, or Switzerland, Fi
 - Account data and the features you ask for: contract, Article 6(1)(b).
 - Session security: legitimate interests, Article 6(1)(f).
 - Reminders and the weekly summary: your choice in Settings, Article 6(1)(a). You can turn them off.
-- Weight, diet, and fitness goals: processed only because you enter them for tracking, Article 9(2)(a).
+- Weight, diet, and fitness goals: processed only because you enter them for tracking, Article 9(2)(a). In this version those entries stay in the app session and are cleared when you close the app. They are not stored on the core service.
 
 You have the right to access, rectify, erase, restrict, and port your personal data, to object to processing based on legitimate interests, and to withdraw consent. You can also complain to your local supervisory authority. We aim to reply within one month.
 
@@ -81,7 +81,9 @@ We may disclose information if the law requires it. This version does not use an
 
 ## How long we keep it
 
-Account records stay until you ask us to delete the account. Sessions end when you log out or they expire. On-device workouts, meals, progress, settings, and community posts stay on that device until you change them, clear app storage, or uninstall FitFlow.
+Account records stay on the core service until you ask us to delete the account. A server session ends when you log out or it expires. The token on the phone exists only in memory, so closing the app drops it there even if the server session has not expired yet.
+
+Workouts, meals, progress, settings, and community posts in this version exist only while the app is open. Closing the app clears them. They are not uploaded.
 
 ## How we protect it
 
@@ -103,7 +105,7 @@ FitFlow is a general fitness and nutrition tracker. It is not a medical device a
 
 | Date | Version | Change |
 | --- | --- | --- |
-| 3 October 2026 | 1.0 | First publication. Account data, on-device fitness and nutrition logs, AI suggestions, community posts, GDPR rights, and HIPAA scope. |
+| 3 October 2026 | 1.0 | First publication. Account data, session-only fitness and nutrition logs, AI suggestions, community posts, GDPR rights, and HIPAA scope. Same-day correction: workouts, meals, progress, settings, and community posts are not saved on the phone and are not sent to other members in this version. |
 
 ## Contact
 
@@ -111,4 +113,4 @@ Email privacy@fitflow.app for access, correction, deletion, or any other privacy
 
 ## Review note
 
-Reviewed on 3 October 2026 against FitFlow 1.0.1: account fields and bcrypt hashing in the core service, on-device workouts, nutrition, progress, and community, and the on-device AI workout generator. HIPAA is described as out of scope for ordinary personal use because FitFlow is not a covered entity or business associate. This document is not a certification.
+Reviewed on 3 October 2026 against FitFlow 1.0.1: account fields and bcrypt hashing in the core service, a bearer session stored on that service, the in-app token held only in memory, session-only workouts, nutrition, progress, and community, and the on-device AI workout generator. HIPAA is described as out of scope for ordinary personal use because FitFlow is not a covered entity or business associate. This document is not a certification.

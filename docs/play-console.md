@@ -100,7 +100,7 @@ Answer from what version 1.0.1 actually does.
 | Profanity or crude humor | No |
 | Alcohol, tobacco, or drugs | No |
 | Gambling, including simulated gambling | No |
-| Users can interact or exchange content with other users | No. Posts, comments, and likes stay on the device. The sample feed is stored in the app and is not sent to other people. |
+| Users can interact or exchange content with other users | No. Posts, comments, and likes stay in the app session. The sample feed is not sent to other people. |
 | The app shares the user’s physical location with other users | No. The app does not request location. |
 | The app lets users buy digital goods | No |
 | The app is a browser or lets users freely navigate the web | No |
@@ -165,7 +165,7 @@ Also finish **Policy → App content** or the release stays blocked:
 
 ### Data safety
 
-**Policy → App content → Data safety.** “Collected” means sent off the device. Workouts, meals, weight, settings, and community posts stay on the device in 1.0.1, so they are not collected.
+**Policy → App content → Data safety.** “Collected” means sent off the device. Workouts, meals, weight, settings, and community posts are not uploaded in 1.0.1, so they are not collected.
 
 | Data type | Collected | Shared | Purpose | Optional |
 |---|---|---|---|---|

@@ -85,7 +85,7 @@ Age rating questionnaire, from what version 1.0.1 actually does:
 | Unrestricted web access | No |
 | Advertising | No |
 | Messaging and chat | No |
-| User-generated content shared with other people | No. Posts, comments, and likes stay on the device. |
+| User-generated content shared with other people | No. Posts, comments, and likes stay in the app session and are not sent to other people. |
 | Medical or treatment information | None. The app tracks workouts and meals the user types. It does not diagnose or prescribe. |
 | Made for Kids | No |
 
@@ -93,7 +93,7 @@ The calculated rating from those answers is 4+. The privacy policy says the app 
 
 ## Privacy nutrition labels
 
-Open **App Privacy**. “Collected” means sent off the device. Workouts, meals, weight, settings, and community posts stay on the device in 1.0.1, so they are not collected. The same three types are declared in `frontend/ios/Runner/PrivacyInfo.xcprivacy`.
+Open **App Privacy**. “Collected” means sent off the device. Workouts, meals, weight, settings, and community posts are not uploaded in 1.0.1, so they are not collected. The same three types are declared in `frontend/ios/Runner/PrivacyInfo.xcprivacy`.
 
 | Data type | Collected | Linked to the user | Tracking | Purpose |
 |---|---|---|---|---|
@@ -235,11 +235,11 @@ Notes to paste:
 ```
 FitFlow 1.0.1 is a consumer fitness and nutrition tracker. It is not a medical device and does not diagnose, treat, or give medical advice. Settings shows: "FitFlow is a fitness tool, not medical advice." The same idea is on the public privacy policy.
 
-The app does not use HealthKit, Clinical Health Records, CareKit, or ResearchKit. Info.plist has no health usage strings. Body weight, workouts, meals, and water are typed by the user and stored on the device. They are not sent to FitFlow servers.
+The app does not use HealthKit, Clinical Health Records, CareKit, or ResearchKit. Info.plist has no health usage strings. Body weight, workouts, meals, and water are typed by the user and kept in the app session. They are not sent to FitFlow servers.
 
 The only data sent off the device is the account: name, email, and a password that the server stores as a bcrypt hash, plus a bearer session token.
 
-Community posts, comments, and likes stay on the device. Users cannot see other people's posts in this build.
+Community posts, comments, and likes stay in the app session and are not uploaded. Users cannot see other people's posts in this build.
 
 The workout draft runs on the device from a fixed exercise catalog. It is optional and it is not a prescription.
 
@@ -253,8 +253,8 @@ How this build lines up with the guidelines that cover a health and fitness app:
 | 1.4.1 Physical harm | The listing, the screenshots, and the app say FitFlow is a training companion and not a medical device. They do not promise weight loss, diagnosis, or treatment. The workout draft is a list of exercises the user can ignore. |
 | 1.4.1 Citations | Medical citations are for apps that give medical advice. This one does not. Keep clinical claims out of the subtitle, keywords, and preview. |
 | 5.1.1 Privacy policy | The privacy policy URL is on the app record and inside the app (sign-in, create account, and Settings). |
-| 5.1.3 Health and health research | HealthKit is not linked. Health data is not used for advertising and is not written to iCloud, because it stays on the device. Do not add `NSHealthShareUsageDescription` or `NSHealthUpdateUsageDescription` until a version actually reads or writes HealthKit, and update the privacy policy and the nutrition label in that same release. |
-| 2.3.1 Accurate metadata | The description lists workouts, meals, the week, on-device community, and account sign-in. Keywords stay on those features. |
+| 5.1.3 Health and health research | HealthKit is not linked. Health data is not used for advertising and is not written to iCloud. In this version it stays in the app session and is not uploaded. Do not add `NSHealthShareUsageDescription` or `NSHealthUpdateUsageDescription` until a version actually reads or writes HealthKit, and update the privacy policy and the nutrition label in that same release. |
+| 2.3.1 Accurate metadata | The description lists workouts, meals, the week, the in-app community, and account sign-in. Keywords stay on those features. |
 | 5.1.1(v) Account deletion | People can ask for deletion by emailing privacy@fitflow.app. That matches the privacy policy. Apple also requires a delete control inside any app that lets someone create an account. Add that control before you submit build 2 for Beta App Review or for the App Store. Internal TestFlight does not go through that review, so the FitFlow team group can install this build while the control is still missing. |
 
 Do not write “HIPAA compliant” on the store page. The privacy policy describes ordinary personal use as outside HIPAA because FitFlow is not a covered entity or a business associate. Apple review does not certify that.
